@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package calculator;
+
+option go_package = "./pkg/pb";
+
+message Request{
+  int32 num1 = 1;
+  int32 num2 = 2;
+}
+
+message Response{
+  int32 num3 = 1;
+}
+
+service Calculator{
+  rpc Add(Request) returns (Response);
+  rpc Sub(Request) returns  ( Response);
+  rpc Div(Request) returns (Response);
+  rpc Mul(Request) returns (Response);
+
+}
+
+// protoc --go_out=. --go-grpc_out=. proto/calculator.proto
