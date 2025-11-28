@@ -23,6 +23,7 @@ const (
 	Calculator_Sub_FullMethodName = "/calculator.Calculator/Sub"
 	Calculator_Div_FullMethodName = "/calculator.Calculator/Div"
 	Calculator_Mul_FullMethodName = "/calculator.Calculator/Mul"
+	Calculator_Mod_FullMethodName = "/calculator.Calculator/Mod"
 )
 
 // CalculatorClient is the client API for Calculator service.
@@ -33,6 +34,7 @@ type CalculatorClient interface {
 	Sub(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error)
 	Div(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error)
 	Mul(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error)
+	Mod(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error)
 }
 
 type calculatorClient struct {
@@ -83,6 +85,16 @@ func (c *calculatorClient) Mul(ctx context.Context, in *Request, opts ...grpc.Ca
 	return out, nil
 }
 
+func (c *calculatorClient) Mod(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Response)
+	err := c.cc.Invoke(ctx, Calculator_Mod_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CalculatorServer is the server API for Calculator service.
 // All implementations must embed UnimplementedCalculatorServer
 // for forward compatibility.
@@ -91,6 +103,7 @@ type CalculatorServer interface {
 	Sub(context.Context, *Request) (*Response, error)
 	Div(context.Context, *Request) (*Response, error)
 	Mul(context.Context, *Request) (*Response, error)
+	Mod(context.Context, *Request) (*Response, error)
 	mustEmbedUnimplementedCalculatorServer()
 }
 
@@ -112,6 +125,9 @@ func (UnimplementedCalculatorServer) Div(context.Context, *Request) (*Response, 
 }
 func (UnimplementedCalculatorServer) Mul(context.Context, *Request) (*Response, error) {
 	return nil, status.Error(codes.Unimplemented, "method Mul not implemented")
+}
+func (UnimplementedCalculatorServer) Mod(context.Context, *Request) (*Response, error) {
+	return nil, status.Error(codes.Unimplemented, "method Mod not implemented")
 }
 func (UnimplementedCalculatorServer) mustEmbedUnimplementedCalculatorServer() {}
 func (UnimplementedCalculatorServer) testEmbeddedByValue()                    {}
@@ -206,6 +222,24 @@ func _Calculator_Mul_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Calculator_Mod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CalculatorServer).Mod(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Calculator_Mod_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CalculatorServer).Mod(ctx, req.(*Request))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Calculator_ServiceDesc is the grpc.ServiceDesc for Calculator service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -228,6 +262,10 @@ var Calculator_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Mul",
 			Handler:    _Calculator_Mul_Handler,
+		},
+		{
+			MethodName: "Mod",
+			Handler:    _Calculator_Mod_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -18,6 +18,7 @@ service Calculator{
   rpc Sub(Request) returns  ( Response);
   rpc Div(Request) returns (Response);
   rpc Mul(Request) returns (Response);
+  rpc Mod(Request) returns (Response);
 
 }
 

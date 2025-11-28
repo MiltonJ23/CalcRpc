@@ -127,13 +127,14 @@ const file_proto_calculator_proto_rawDesc = "" +
 	"\x04num1\x18\x01 \x01(\x05R\x04num1\x12\x12\n" +
 	"\x04num2\x18\x02 \x01(\x05R\x04num2\"\x1e\n" +
 	"\bResponse\x12\x12\n" +
-	"\x04num3\x18\x01 \x01(\x05R\x04num32\xd4\x01\n" +
+	"\x04num3\x18\x01 \x01(\x05R\x04num32\x86\x02\n" +
 	"\n" +
 	"Calculator\x120\n" +
 	"\x03Add\x12\x13.calculator.Request\x1a\x14.calculator.Response\x120\n" +
 	"\x03Sub\x12\x13.calculator.Request\x1a\x14.calculator.Response\x120\n" +
 	"\x03Div\x12\x13.calculator.Request\x1a\x14.calculator.Response\x120\n" +
-	"\x03Mul\x12\x13.calculator.Request\x1a\x14.calculator.ResponseB\n" +
+	"\x03Mul\x12\x13.calculator.Request\x1a\x14.calculator.Response\x120\n" +
+	"\x03Mod\x12\x13.calculator.Request\x1a\x14.calculator.ResponseB\n" +
 	"Z\b./pkg/pbb\x06proto3"
 
 var (
@@ -158,12 +159,14 @@ var file_proto_calculator_proto_depIdxs = []int32{
 	0, // 1: calculator.Calculator.Sub:input_type -> calculator.Request
 	0, // 2: calculator.Calculator.Div:input_type -> calculator.Request
 	0, // 3: calculator.Calculator.Mul:input_type -> calculator.Request
-	1, // 4: calculator.Calculator.Add:output_type -> calculator.Response
-	1, // 5: calculator.Calculator.Sub:output_type -> calculator.Response
-	1, // 6: calculator.Calculator.Div:output_type -> calculator.Response
-	1, // 7: calculator.Calculator.Mul:output_type -> calculator.Response
-	4, // [4:8] is the sub-list for method output_type
-	0, // [0:4] is the sub-list for method input_type
+	0, // 4: calculator.Calculator.Mod:input_type -> calculator.Request
+	1, // 5: calculator.Calculator.Add:output_type -> calculator.Response
+	1, // 6: calculator.Calculator.Sub:output_type -> calculator.Response
+	1, // 7: calculator.Calculator.Div:output_type -> calculator.Response
+	1, // 8: calculator.Calculator.Mul:output_type -> calculator.Response
+	1, // 9: calculator.Calculator.Mod:output_type -> calculator.Response
+	5, // [5:10] is the sub-list for method output_type
+	0, // [0:5] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
