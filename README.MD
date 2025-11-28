@@ -181,7 +181,7 @@ The `.github/workflows/deploy.yml` file automatically:
 
 ## 📜 References
 
-* Concept based on "gRPC Implementation: Calculator Service" by Engr. [cite\_start]Daniel Moune[cite: 1, 2].
+* Concept based on "gRPC Implementation: Calculator Service" by Engr. Daniel Moune.
 * gRPC Official Documentation: [grpc.io](https://grpc.io/)
 * Protocol Buffers: [developers.google.com/protocol-buffers](https://developers.google.com/protocol-buffers)
 
