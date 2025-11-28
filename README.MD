@@ -2,7 +2,7 @@
 
 A production-grade implementation of a Calculator Service using **Clean Architecture**. This project demonstrates how to build a Dual-Protocol Microservice (gRPC + HTTP) using **Go** for the backend and **Next.js** for the frontend, fully containerized for deployment.
 
-Based on the original gRPC concept by Engr. [cite\_start]Daniel Moune[cite: 1, 2], upgraded to a modern web stack.
+Based on the original gRPC concept by Engr. Daniel Moune, upgraded to a modern web stack.
 
 -----
 
