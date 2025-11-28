@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"   # HTTP/Gin
+      - "50051:50051" # gRPC
+    networks:
+      - calc-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      # In Docker, we refer to the service name 'backend', not localhost
+      # Note: For Server-Side Rendering (SSR), this works.
+      # For Client-Side calls, the browser still needs 'localhost' or the public IP.
+      - NEXT_PUBLIC_API_URL=http://localhost:8080
+    depends_on:
+      - backend
+    networks:
+      - calc-net
+
+networks:
+  calc-net:
+    driver: bridge
